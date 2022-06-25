@@ -1,0 +1,273 @@
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="registerSubmit()"
+  class="form-group w-75 mx-auto my-4 p-5 border border-4 rounded-3"
+>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      class="form-control my-2"
+      placeholder="Name"
+      type="text"
+      id="name"
+      name="name"
+      formControlName="name"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        allTouched ||
+        (!controlValidation['name'].valid && controlValidation['name'].touched)
+      "
+    >
+      <p *ngIf="controlValidation['name'].errors?.['required']">
+        Name can't be blank
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input
+      class="form-control my-2"
+      placeholder="Enter email"
+      type="email"
+      id="email"
+      name="email"
+      formControlName="email"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        allTouched ||
+        (!controlValidation['email'].valid &&
+          controlValidation['email'].touched)
+      "
+    >
+      <p *ngIf="controlValidation['email'].errors?.['required']">
+        Email can't be blank
+      </p>
+      <p *ngIf="controlValidation['email'].errors?.['pattern']">
+        Pattern of Email Not Right
+      </p>
+      <!-- <p *ngIf="controlValidation['email'].errors?.['email']">EmailFormat</p> -->
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="userName">User Name</label>
+    <input
+      class="form-control my-2"
+      placeholder="userName"
+      type="text"
+      id="userName"
+      name="userName"
+      formControlName="userName"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        allTouched ||
+        (!controlValidation['userName'].valid &&
+          controlValidation['userName'].touched)
+      "
+    >
+      <p *ngIf="controlValidation['userName'].errors?.['required']">
+        UserName can't be blank
+      </p>
+      <p *ngIf="controlValidation['userName'].errors?.['pattern']">
+        UserName must haven't space
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      class="form-control my-2"
+      placeholder="Password"
+      type="password"
+      id="password"
+      name="password"
+      formControlName="password"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        allTouched ||
+        (!controlValidation['password'].valid &&
+          controlValidation['password'].touched)
+      "
+    >
+      <p *ngIf="controlValidation['password'].errors?.['required']">
+        Password can't be blank
+      </p>
+      <p *ngIf="controlValidation['password'].errors?.['minlength']">
+        Password must have 8 char or more
+      </p>
+      <p *ngIf="controlValidation['password'].errors?.['pattern']">
+        Pattern Not Right
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="confirmPassword">Confirm Password</label>
+    <input
+      class="form-control my-2"
+      placeholder="Confirm Password"
+      type="password"
+      id="confirmPassword"
+      name="confirmPassword"
+      formControlName="confirmPassword"
+    />
+    <div
+      class="text-danger"
+      *ngIf="
+        allTouched ||
+        (!controlValidation['confirmPassword'].valid &&
+          controlValidation['confirmPassword'].touched)
+      "
+    >
+      <p *ngIf="controlValidation['confirmPassword'].errors?.['required']">
+        ConfirmPassword can't be blank
+      </p>
+    </div>
+    <div class="text-danger" *ngIf="controlValidation['confirmPassword'].valid">
+      <p
+        *ngIf="
+          controlValidation['confirmPassword'].value !=
+          controlValidation['password'].value
+        "
+      >
+        Password doesn't match
+      </p>
+    </div>
+  </div>
+  <div
+    class="form-group p-3 border border-4 rounded-3 my-4"
+    formArrayName="addressArray"
+    *ngFor="let address of addressArray.controls; let i = index"
+  >
+    <div class="row align-items-center">
+      <h2 class="col">Address {{ i + 1 }}</h2>
+      <div class="col text-end">
+        <a class="btn d-inline btn-danger my-3 p-2" (click)="removeAddress(i)">
+          Remove Address
+        </a>
+      </div>
+    </div>
+
+    <div class="row my-2" [formGroupName]="i">
+      <div class="col-6">
+        <label for="address">Address</label>
+        <input
+          class="form-control my-2"
+          type="text"
+          id="address"
+          name="address"
+          placeholder="Address"
+          formControlName="address"
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            allTouched ||
+            (!address.get('address')?.valid && address.get('address')?.touched)
+          "
+        >
+          <p *ngIf="address.get('address')?.errors?.['required']">
+            Address can't be blank
+          </p>
+          <p *ngIf="address.get('address')?.errors?.['pattern']">
+            Pattern Not Right
+          </p>
+        </div>
+      </div>
+      <div class="col-6">
+        <label for="street"> Street</label>
+        <input
+          class="form-control my-2"
+          type="text"
+          id="street"
+          name="street"
+          placeholder="Street"
+          formControlName="street"
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            allTouched ||
+            (!address.get('street')?.valid && address.get('street')?.touched)
+          "
+        >
+          <p *ngIf="address.get('street')?.errors?.['required']">
+            Street can't be blank
+          </p>
+          <p *ngIf="address.get('street')?.errors?.['pattern']">
+            Pattern Not Right
+          </p>
+        </div>
+      </div>
+      <div class="col-6">
+        <label for="city"> City</label>
+        <input
+          class="form-control my-2"
+          type="text"
+          id="city"
+          name="city"
+          placeholder="City"
+          formControlName="city"
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            allTouched ||
+            (!address.get('city')?.valid && address.get('city')?.touched)
+          "
+        >
+          <p *ngIf="address.get('city')?.errors?.['required']">
+            City can't be blank
+          </p>
+          <p *ngIf="address.get('city')?.errors?.['pattern']">
+            Pattern Not Right
+          </p>
+        </div>
+      </div>
+      <div class="col-6">
+        <label for="country">Country </label>
+        <input
+          class="form-control my-2"
+          type="text"
+          id="country"
+          name="country"
+          placeholder="Country"
+          formControlName="country"
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            allTouched ||
+            (!address.get('country')?.valid && address.get('country')?.touched)
+          "
+        >
+          <p *ngIf="address.get('country')?.errors?.['required']">
+            Country can't be blank
+          </p>
+          <p *ngIf="address.get('country')?.errors?.['pattern']">
+            Pattern Not Right
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-success my-3" (click)="addAddress()"> Add Address </a>
+
+  <button
+    type="submit"
+    [disabled]="registerForm.invalid"
+    class="btn w-100 btn-outline-warning my-3"
+  >
+    Register
+  </button>
+  <div>
+    Already have account ?
+    <a routerLink="/auth/login" class="link-light">Login</a>
+  </div>
+</form>

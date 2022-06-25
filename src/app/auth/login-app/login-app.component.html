@@ -1,0 +1,58 @@
+<form
+  #loginForm="ngForm"
+  (ngSubmit)="loginSubmit(loginForm)"
+  class="form-group w-50 mx-auto mt-4 p-5 border border-4 rounded-3"
+>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input
+      class="form-control my-2"
+      placeholder="Enter email"
+      type="email"
+      id="email"
+      name="email"
+      #email="ngModel"
+      ngModel
+      required
+      email
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+    />
+    <div
+      class="text-danger"
+      *ngIf="allTouched || (!email.valid && email.touched)"
+    >
+      <p *ngIf="email.errors?.['required']">Email can't be blank</p>
+      <p *ngIf="email.errors?.['pattern']">Pattern of Email Not Right</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      class="form-control my-2"
+      placeholder="Password"
+      type="password"
+      id="password"
+      name="password"
+      #password="ngModel"
+      ngModel
+      required
+    />
+    <div
+      class="text-danger"
+      *ngIf="allTouched || (!password.valid && password.touched)"
+    >
+      <p *ngIf="password.errors?.['required']">Password can't be blank</p>
+    </div>
+  </div>
+  <button
+    type="submit"
+    [disabled]="loginForm.invalid"
+    class="btn w-100 btn-outline-warning my-3"
+  >
+    login
+  </button>
+  <div>
+    Don't have an account ?
+    <a routerLink="/auth/register" class="link-light">Register</a>
+  </div>
+</form>

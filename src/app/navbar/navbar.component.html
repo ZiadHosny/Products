@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand NavBg navbar-dark py-3">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Products</a>
+
+    <ul class="navbar-nav align-items-center">
+      <li class="nav-item me-5">
+        <a routerLink="cart">
+          <img
+            src="../../assets/shopping-cart.png"
+            width="30px"
+            height="30px"
+            alt=""
+        /></a>
+        <span class="text-end m-2">{{ cart }}</span>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="auth/register" routerLinkActive="active"
+          >Register</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/auth/login" routerLinkActive="active"
+          >Login</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
