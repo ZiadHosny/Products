@@ -1,4 +1,5 @@
-import { CartService } from './../cart.service';
+import { Product } from './../product';
+import { CartService } from '../services/cart.service';
 
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -12,7 +13,7 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  @Input() product: any;
+  @Input() product: Product = {} as Product;
 
   addToCart() {
     this.cartService.addToCart(this.product);

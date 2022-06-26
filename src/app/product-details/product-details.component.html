@@ -1,4 +1,4 @@
-<div class="text-center" *ngIf="product">
+<div class="text-center" *ngIf="product.images">
   <div class="row p-4">
     <img class="col-4" [src]="[product.images[0]]" />
     <img class="col-4" [src]="[product.images[1]]" />
@@ -11,10 +11,10 @@
       {{ product.description }}
     </p>
     <div class="row">
-      <h5 class="col-7 card-title">{{ product.category["name"] }}</h5>
+      <h5 class="col-7 card-title">{{ product.category?.["name"] }}</h5>
       <h6 class="col-5 card-title Price">{{ product.price | price }}</h6>
     </div>
 
-    <a class="btn btn-danger" (click)="addToCart()">Add To Cart</a>
+    <a class="btn btn-success" (click)="addToCart()">Add To Cart</a>
   </div>
 </div>

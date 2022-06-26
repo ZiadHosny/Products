@@ -1,3 +1,4 @@
+import { Product } from './../product';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -6,12 +7,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class CartService {
   private cartsCount = 0;
-  private carts: any[] = [];
+  private carts: Product[] = [];
   private totalPrice = 0;
 
   private cartsCountSubject: BehaviorSubject<number>;
   private totalPriceSubject: BehaviorSubject<number>;
-  private cartsSubject: BehaviorSubject<any[]>;
+  private cartsSubject: BehaviorSubject<Product[]>;
 
   constructor() {
     this.cartsCountSubject = new BehaviorSubject(this.cartsCount);
@@ -22,7 +23,7 @@ export class CartService {
   cartCount(): Observable<number> {
     return this.cartsCountSubject.asObservable();
   }
-  getCarts(): Observable<any> {
+  getCarts(): Observable<Product[]> {
     return this.cartsSubject.asObservable();
   }
   getTotalPrice(): Observable<number> {
@@ -33,13 +34,13 @@ export class CartService {
     this.cartsCount++;
     this.cartsCountSubject.next(this.cartsCount);
   }
-  decrement(i = 1) {
-    this.cartsCount -= i;
+  decrement(quantity = 1) {
+    this.cartsCount -= quantity;
     this.cartsCountSubject.next(this.cartsCount);
   }
 
-  addToCart(product: any) {
-    let cart = this.carts.find((pro: any) => {
+  addToCart(product: Product) {
+    let cart = this.carts.find((pro: Product) => {
       return pro.id == product.id;
     });
 
@@ -51,7 +52,7 @@ export class CartService {
         quantity: 1,
         title: product.title,
         price: product.price,
-        image: product.images[0],
+        images: product.images,
       });
     }
 
@@ -74,28 +75,19 @@ export class CartService {
     this.totalPriceSubject.next(this.totalPrice);
   }
 
-  increase(id: any) {
-    let cart = this.carts.find((pro: any) => {
-      return pro.id == id;
-    });
-
-    cart.quantity = cart.quantity + 1;
-
+  increase(index: number) {
+    this.carts[index].quantity++;
     this.updateTotalPrice();
     this.increment();
   }
 
-  decrease(id: any, index: number) {
-    let cart = this.carts.find((pro) => {
-      return pro.id == id;
-    });
-
-    if (cart.quantity > 1) {
-      cart.quantity = cart.quantity - 1;
+  decrease(index: number) {
+    if (this.carts[index].quantity > 1) {
+      this.carts[index].quantity--;
       this.updateTotalPrice();
       this.decrement();
     } else {
-      this.removeFormCarts(index, cart.quantity);
+      this.removeFormCarts(index, this.carts[index].quantity);
     }
   }
 }

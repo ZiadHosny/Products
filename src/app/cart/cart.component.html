@@ -1,4 +1,4 @@
-<div *ngIf="carts == 0; else getTable" class="text-center">
+<div *ngIf="carts.length == 0; else getTable" class="text-center">
   <div class="p-3 text-warning fs-5">Not Found Any Products</div>
   <img
     src="../../assets/undraw_empty_re_opql.svg"
@@ -10,7 +10,7 @@
 </div>
 
 <ng-template #getTable>
-  <div class="p-5">
+  <div class="p-2">
     <h1 class="text-center">Cart</h1>
     <table
       class="table table-bordered border-warning text-light text-center fs-5"
@@ -25,20 +25,18 @@
         </tr>
       </thead>
       <tbody *ngFor="let cart of carts; let i = index">
-        <tr>
+        <tr class="">
           <td>
-            <img class="Img" src="{{ cart.image }}" alt="" />
+            <img class="Img" src="{{ cart.images[0] }}" alt="" />
           </td>
           <td>{{ cart.title }}</td>
           <td>{{ cart.price | price }}</td>
           <td>
-            <a class="btn btn-success rounded-4" (click)="increase(cart.id)"
+            <a class="btn btn-success rounded-4" (click)="increase(i)"
               >+</a
             >
             <span class="m-3">{{ cart.quantity }}</span>
-            <a class="btn btn-warning rounded-4" (click)="decrease(cart.id, i)"
-              >-</a
-            >
+            <a class="btn btn-warning rounded-4" (click)="decrease(i)">-</a>
           </td>
           <td>
             <a class="btn btn-danger" (click)="remove(i, cart.quantity)"

@@ -1,4 +1,5 @@
-import { CartService } from './../cart.service';
+import { Product } from './../product';
+import { CartService } from './../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  carts: any;
+  carts: Product[] = [];
   totalPrice: number = 0;
   constructor(private cartService: CartService) {
     this.cartService.getCarts().subscribe((e) => {
@@ -20,15 +21,15 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  remove(i: any, quantity: any) {
+  remove(i: number, quantity: number) {
     this.cartService.removeFormCarts(i, quantity);
   }
 
-  increase(id: any) {
-    this.cartService.increase(id);
+  increase(index: number) {
+    this.cartService.increase(index);
   }
 
-  decrease(id: any, index: number) {
-    this.cartService.decrease(id, index);
+  decrease(index: number) {
+    this.cartService.decrease(index);
   }
 }

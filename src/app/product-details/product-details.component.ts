@@ -1,5 +1,6 @@
-import { CartService } from './../cart.service';
-import { ProductApiService } from './../product-api.service';
+import { Product } from './../product';
+import { CartService } from '../services/cart.service';
+import { ProductApiService } from '../services/product-api.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailsComponent implements OnInit {
   productId: any;
-  product: any;
+  product: Product = {} as Product;
   apiService: any;
 
   constructor(

@@ -1,4 +1,4 @@
-import { Product } from './product';
+import { Product } from '../product';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -11,7 +11,6 @@ export class ProductApiService {
 
   getProducts(): Observable<any> {
     //return this.http.get('https://fakestoreapi.com/products');
-
     return this.http.get('https://api.escuelajs.co/api/v1/products');
   }
 
