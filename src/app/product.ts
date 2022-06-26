@@ -3,7 +3,7 @@ export interface Product {
   title: string;
   price: number;
   description: string;
-  images: Array<String>;
-  category: {name : number};
-  quantity: number;
+  images: string[];
+  category: { id: number; name: string; image: string };
+  // quantity?: number;
 }

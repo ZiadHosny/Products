@@ -9,11 +9,16 @@ import { ProductApiService } from '../product-api.service';
 })
 export class ProductListComponent implements OnInit {
   products: any;
+  apiService: any;
   constructor(private productApiService: ProductApiService) {}
 
   ngOnInit(): void {
-    this.productApiService.getProducts().subscribe((e) => {
+    this.apiService = this.productApiService.getProducts().subscribe((e) => {
       this.products = e;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.apiService.unsubscribe();
   }
 }

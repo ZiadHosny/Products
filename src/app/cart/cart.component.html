@@ -1,11 +1,12 @@
-<div *ngIf="carts == 0; else getTable">
-  <div class="p-5 text-warning fs-5 text-center">Not Found Any Products</div>
+<div *ngIf="carts == 0; else getTable" class="text-center">
+  <div class="p-3 text-warning fs-5">Not Found Any Products</div>
   <img
     src="../../assets/undraw_empty_re_opql.svg"
     class="NoCarts"
     alt=""
     srcset=""
   />
+  <a class="btn btn-success mt-5 p-2" routerLink="/">Go To Buy</a>
 </div>
 
 <ng-template #getTable>

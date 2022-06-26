@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductDetailsComponent implements OnInit {
   productId: any;
   product: any;
+  apiService: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -21,9 +22,15 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.productId = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.productApiService.getProductById(this.productId).subscribe((e) => {
-      this.product = e;
-    });
+    this.apiService = this.productApiService
+      .getProductById(this.productId)
+      .subscribe((e) => {
+        this.product = e;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.apiService.unsubscribe();
   }
 
   addToCart() {

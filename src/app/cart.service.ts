@@ -44,7 +44,7 @@ export class CartService {
     });
 
     if (cart) {
-      cart.quantity = cart.quantity + 1;
+      cart.quantity++;
     } else {
       this.carts.push({
         id: product.id,
@@ -56,7 +56,6 @@ export class CartService {
     }
 
     this.cartsSubject.next(this.carts);
-    this.totalPriceSubject.next(this.totalPrice);
     this.increment();
     this.updateTotalPrice();
   }
