@@ -1,5 +1,5 @@
-import { Product } from './../product';
-import { CartService } from './../services/cart.service';
+import { Product } from '../product';
+import { CartService } from '../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -31,5 +31,9 @@ export class CartComponent implements OnInit {
 
   decrease(index: number) {
     this.cartService.decrease(index);
+  }
+
+  clear() {
+    this.cartService.clear();
   }
 }

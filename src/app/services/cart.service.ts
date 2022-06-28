@@ -90,4 +90,13 @@ export class CartService {
       this.removeFormCarts(index, this.carts[index].quantity);
     }
   }
+
+  clear() {
+    this.cartsCount = 0;
+    this.carts = [];
+    this.totalPrice = 0;
+    this.cartsCountSubject.next(0);
+    this.totalPriceSubject.next(0);
+    this.cartsSubject.next([]);
+  }
 }

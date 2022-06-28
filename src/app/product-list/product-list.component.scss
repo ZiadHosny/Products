@@ -1,3 +1,15 @@
 app-product-card {
   color: black;
 }
+
+.loader {
+  text-align: center;
+  z-index: 10;
+  height: 70vh;
+
+  background-image: url("../../assets/loading.gif");
+  background-position: center center;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+}

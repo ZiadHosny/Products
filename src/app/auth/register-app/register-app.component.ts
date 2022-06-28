@@ -69,6 +69,23 @@ export class RegisterAppComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  canExit() {
+    const { name, email, userName, password, confirmPassword } =
+      this.registerForm.controls;
+
+    if (
+      name.value ||
+      email.value ||
+      userName.value ||
+      password.value ||
+      confirmPassword.value
+    ) {
+      return confirm('Are u Sure');
+    } else {
+      return true;
+    }
+  }
+
   registerSubmit() {
     if (this.registerForm.valid) {
       console.log(this.registerForm);

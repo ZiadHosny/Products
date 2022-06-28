@@ -8,8 +8,18 @@
     <h5 class="card-title Title">{{ product.title }}</h5>
 
     <div class="row Row align-items-center">
-      <h5 class="col-7 card-title">{{ product.category?.["name"] }}</h5>
-      <h6 class="col-5 card-title Price">{{ product.price | price }}</h6>
+      <div class="col">
+        <h5 class="Category">{{ product.category?.["name"] }}</h5>
+        <h6 class="Price">{{ product.price | price }}</h6>
+      </div>
+      <div class="col">
+        <i
+          [ngClass]="{ starInList: inWishList == true }"
+          (click)="toggleWishList(product.id, product.images[0], product.title)"
+          class="fa-solid fa-star star"
+          ><a></a
+        ></i>
+      </div>
     </div>
     <div class="row gap-2 mt-3">
       <a class="col btn btn-success" (click)="addToCart()">Add To Cart</a>

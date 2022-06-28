@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-app',
@@ -7,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginAppComponent implements OnInit {
   allTouched: boolean = false;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   loginSubmit(loginForm: any) {
     if (loginForm.valid) {
-      console.log(loginForm);
+      localStorage['token'] = loginForm.controls.email.value;
+      this.router.navigate(['']);
     } else {
       this.allTouched = true;
     }

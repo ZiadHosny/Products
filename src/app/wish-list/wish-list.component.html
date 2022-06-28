@@ -1,0 +1,19 @@
+<div class="col-3 wishList card mt-5 ms-3 overflow-scroll">
+  <div class="row mb-3">
+    <div class="col">Wish List</div>
+    <div class="col text-end">{{ wishList.length }} Product</div>
+  </div>
+
+  <div class="mb-3" *ngFor="let wish of wishList; let index = index">
+    <div class="card">
+      <div class="row align-items-center">
+        <div class="col-4">
+          <img src="{{ wish.img }}" alt="" class="Img" />
+        </div>
+
+        <div class="col-6">{{ wish.title }}</div>
+        <a (click)="removeItemFromWishList(index)" class="btn col-2">❌</a>
+      </div>
+    </div>
+  </div>
+</div>

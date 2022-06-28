@@ -32,9 +32,7 @@
           <td>{{ cart.title }}</td>
           <td>{{ cart.price | price }}</td>
           <td>
-            <a class="btn btn-success rounded-4" (click)="increase(i)"
-              >+</a
-            >
+            <a class="btn btn-success rounded-4" (click)="increase(i)">+</a>
             <span class="m-3">{{ cart.quantity }}</span>
             <a class="btn btn-warning rounded-4" (click)="decrease(i)">-</a>
           </td>
@@ -46,6 +44,15 @@
         </tr>
       </tbody>
     </table>
-    <h1>Total : {{ totalPrice }}</h1>
+    <div class="row">
+      <div class="col">
+        <h1>Total : {{ totalPrice | price }}</h1>
+      </div>
+      <div class="col text-end align-items-center">
+        <button class="btn btn-primary px-2" (click)="clear()">
+          Clear All
+        </button>
+      </div>
+    </div>
   </div>
 </ng-template>

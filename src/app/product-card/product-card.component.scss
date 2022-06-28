@@ -1,13 +1,10 @@
 .Title {
   height: 50px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 18px;
 }
-.Desc {
-  height: 150px;
-  color: gray;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+.Category {
+  font-size: 16px;
 }
 
 .Price {
@@ -17,4 +14,13 @@
 
 .Row {
   height: 50px;
+}
+
+.star {
+  font-size: 30px;
+  color: rgb(201, 201, 201);
+}
+
+.starInList{
+  color: rgb(255, 208, 0)
 }

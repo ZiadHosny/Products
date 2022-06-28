@@ -1,3 +1,4 @@
+import { LoaderService } from './../services/loader.service';
 import { Product } from './../product';
 import { CartService } from '../services/cart.service';
 import { ProductApiService } from '../services/product-api.service';
@@ -17,7 +18,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productApiService: ProductApiService,
-    private cartService: CartService
+    private cartService: CartService,
+    public loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
